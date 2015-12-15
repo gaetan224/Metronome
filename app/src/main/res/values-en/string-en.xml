@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">metrenome</string>
+    <string name="alt_string">Logo metrenome</string>
+    <string name="volume">Volume</string>
+    <string name="vibreur">Vibrator</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="accent_prem">mark the first </string>
+</resources>
+
+

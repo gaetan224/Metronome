@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Metrenome</string>
+
+    <string name="vibreur">Vibration</string>
+    <string name="start">Démarrer</string>
+    <string name="stop">Arreter</string>
+    <string name="action_settings">Settings</string>
+    <string name="accent_prem">Accenturer le premier </string>
+    <string name="son">Son </string>
+</resources>
+
+
