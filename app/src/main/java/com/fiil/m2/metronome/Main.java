@@ -52,7 +52,7 @@ public class Main extends Activity {
     }
 
     private void buildWidgets() {
-        //le clignotant
+        //le clignotant QUI clignote
         affichtemps = (TextView) findViewById(R.id.clignote);
         affichtemps.setText(""+vaLtemps+"cout");
         clignote = new Clignote(affichtemps);
