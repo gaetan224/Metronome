@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="360dp">
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"></LinearLayout>
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -108,4 +103,156 @@
 
 
 
-</LinearLayout>
+</LinearLayout>-->
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+
+    <TextView
+        android:text="@string/tempo"
+        android:textSize="20dp"
+        />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="10dip"
+        >
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/plustempo"
+            android:textSize="50dp"
+            android:layout_column="0" />
+
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="1"
+            android:gravity="center"
+            android:layout_column="1"
+            android:id="@+id/tempo"
+            style="@style/text_temps"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="50dp"
+            android:id="@+id/moinstempo"
+            android:layout_column="2" />
+
+
+    </TableRow>
+
+
+
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090"
+
+        />
+
+    <TextView
+        android:text="@string/temps"
+        android:textSize="20dp"
+        />
+
+    <TableRow>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/plustemps"
+            android:textSize="50dp"
+            android:layout_column="0" />
+
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="1"
+            android:gravity="center"
+            android:layout_column="1"
+            android:id="@+id/temps"
+            style="@style/text_temps"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="50dp"
+            android:id="@+id/moinstemps"
+            android:layout_column="2" />
+
+
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090"
+        />
+
+
+    <TableRow
+        android:padding="6dip"
+        >
+
+        <CheckBox
+            android:text="@string/vibreur"
+            android:id="@+id/vibreur"
+            />
+
+        <TextView
+            android:text="4 temps"
+            android:textSize="20dp"
+            android:gravity="right"
+
+            android:id="@+id/clignote"
+            />
+
+
+    </TableRow>
+
+    <TableRow
+        android:padding="6dip"
+        >
+
+        <CheckBox
+            android:text="@string/son"
+            android:id="@+id/son"
+            />
+
+
+    </TableRow>
+
+
+
+    <TableRow
+        android:padding="3dip"
+        >
+
+        <ToggleButton
+            android:layout_column="0"
+            android:layout_span="3"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textOff="@string/start"
+            android:textOn="@string/stop"
+            android:id="@+id/demarrer" />
+    </TableRow>
+
+</TableLayout>
