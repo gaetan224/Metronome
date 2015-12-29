@@ -54,9 +54,9 @@ public class Main extends Activity {
     private void buildWidgets() {
         //le clignotant
         affichtemps = (TextView) findViewById(R.id.clignote);
-        affichtemps.setText(""+vaLtemps);
+        affichtemps.setText(""+vaLtemps+"cout");
         clignote = new Clignote(affichtemps);
-        //clignote.blink(1000);
+        clignote.blink(1000);
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
