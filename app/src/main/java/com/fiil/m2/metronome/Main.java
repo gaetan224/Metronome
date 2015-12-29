@@ -73,4 +73,56 @@ public class Main extends Activity {
     }
 
 
+
+    public static int getMax_Value() {
+        return Max_Value;
+    }
+
+    public static int getMin_Value() {
+        return Min_Value;
+    }
+
+    public Clignote getClignote() {
+        return clignote;
+    }
+
+    public ToggleButton getStart() {
+        return start;
+    }
+
+    public TextView getAffichtemps() {
+        return affichtemps;
+    }
+
+    public TextView getTempo() {
+        return tempo;
+    }
+
+    public TextView getTemps() {
+        return temps;
+    }
+
+    public Button getPlustempo() {
+        return plustempo;
+    }
+
+    public Button getPlustemps() {
+        return plustemps;
+    }
+
+    public Button getMoinstempo() {
+        return moinstempo;
+    }
+
+    public Button getMoinstemps() {
+        return moinstemps;
+    }
+
+    public int getVaLtempo() {
+        return vaLtempo;
+    }
+
+    public int getVaLtemps() {
+        return vaLtemps;
+    }
 }
