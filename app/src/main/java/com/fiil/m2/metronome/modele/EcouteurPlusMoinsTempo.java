@@ -24,6 +24,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     //valeur min et max du tempo
     private static final int Min_Value = 10;
     private static final int Max_Value = 260;
+    private static final int Maintain_Value = 5;
 
     // pour gerer l'incrémentation et décrementation continue des bouton tempo plus et moins
     private Handler mHandler;
@@ -37,6 +38,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     @Override
     public void onClick(View v) {
      //   doAction(v,1);
+
         switch (v.getId()) {
             // si c'est plus
             case R.id.plustempo:
@@ -104,7 +106,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     Runnable ActionInc = new Runnable() {
         @Override public void run() {
             Log.d("actionInc", "Performing actionINc...");
-            doActionInc(5);
+            doActionInc(Maintain_Value);
             mHandler.postDelayed(this, 500);
         }
     };
@@ -112,10 +114,13 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     Runnable ActionDec = new Runnable() {
         @Override public void run() {
             Log.d("actionDec", "Performing actionDec...");
-            doActionDec(5);
+            doActionDec(Maintain_Value);
             mHandler.postDelayed(this, 500);
         }
     };
+
+
+    //private static final int factplus = 350;
 
 
 
@@ -124,37 +129,44 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
 
 
         vaLtempo+=inc;
+        realval-=inc;
+        realval = (realval < 0 || vaLtempo > Max_Value)? Max_Value:realval;
         vaLtempo = (vaLtempo > Max_Value)? Min_Value:vaLtempo;
+
+        Log.d("realval: ", "realval = "+realval);
         main.setVaLtempo(vaLtempo);
         if(main.getStart().isChecked()){
-            //main.getClignote().start();
-            //main.getClignote().blink(10*(vaLtempo-inc));
+
+            main.getClignote().blink(realval);
         }else{
-            //main.getClignote().stop();
+            main.getClignote().stop();
         }
         //mise a jour de la valeur tempo de l'activité principal
         main.setVaLtempo(vaLtempo);
-        main.getTempo().setText(vaLtempo + "");
+        main.getTempo().setText(vaLtempo+"");
     }
 
+    //static int realvaldec = 100;
+    //static int realvalInc = 100;
+    int realval = Max_Value - 100;
 
     public void  doActionDec( int inc){
         // si c'est moins
         vaLtempo-=inc;
+        realval+=inc;
+        realval = (realval > Max_Value  || vaLtempo < Min_Value)? Min_Value:realval;
         vaLtempo = (vaLtempo < Min_Value)? Max_Value:vaLtempo;
 
+        Log.d("realval: ", "realval = "+realval);
         if(main.getStart().isChecked()){
-            //main.getClignote().start();
-            //main.getClignote().blink(10*(vaLtempo+inc));
+
+            main.getClignote().blink((realval));
         }else{
-            //main.getClignote().stop();
+            main.getClignote().stop();
         }
         //mise a jour de la valeur tempo de l'activité principal
         main.setVaLtempo(vaLtempo);
-        main.getTempo().setText(vaLtempo + "");
-
+        main.getTempo().setText(vaLtempo+"");
     }
-
-
 
 }

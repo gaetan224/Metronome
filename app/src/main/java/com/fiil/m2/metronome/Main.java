@@ -3,6 +3,8 @@ package com.fiil.m2.metronome;
 import android.view.View;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -58,7 +60,15 @@ public class Main extends Activity {
         affichtemps = (TextView) findViewById(R.id.clignote);
         affichtemps.setText(vaLtemps+"coups");
         clignote = new Clignote(affichtemps);
-        //clignote.blink(10*vaLtempo);
+        //clignote.blink(vaLtempo);
+
+
+
+
+        //affichtemps.clearAnimation();
+
+
+
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);

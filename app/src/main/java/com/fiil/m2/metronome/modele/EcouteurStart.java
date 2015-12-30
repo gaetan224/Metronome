@@ -3,6 +3,7 @@ package com.fiil.m2.metronome.modele;
 import android.view.View;
 
 import com.fiil.m2.metronome.Main;
+import com.fiil.m2.metronome.R;
 
 /**
  * Created by Gaetan on 24/12/2015.
@@ -17,6 +18,16 @@ public class EcouteurStart implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        if(v.getId() == R.id.demarrer){
+            if(main.getStart().isChecked()){
+
+
+            }else{
+                main.getClignote().stop();
+            }
+        }
+
 
     }
 }
