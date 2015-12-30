@@ -9,12 +9,14 @@ import android.widget.TextView;
 public class Clignote {
 
     private TextView text;
+    protected volatile boolean running = true;
+    Thread t;
 
     public Clignote(TextView text) {
         this.text = text;
     }
 
-    public void blink(int tempsAclignoter ){ //timeToBlink en milissegunds
+    public void blink(int tempsAclignoter ){ //timeToBlink en milissecondes
         final Handler handler = new Handler();
         final int timeToBlink = tempsAclignoter;
 
@@ -27,16 +29,28 @@ public class Clignote {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-
+                        while(running){
                         if(text.getVisibility() == View.VISIBLE){
                             text.setVisibility(View.INVISIBLE);
                         }else{
                             text.setVisibility(View.VISIBLE);
                         }
                         blink(timeToBlink);
-                    }
+                    }}
                 });
             }
         }).start();
     }
+
+    public void stop(){
+
+    running = false;
+    }
+
+    public void start(){
+
+        running = true;
+    }
+
+
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.util.Log;
 
+import com.fiil.m2.metronome.modele.EcouteurPlusMoinsTempo;
 import com.fiil.m2.metronome.modele.EcouteurStart;
 import com.fiil.m2.metronome.service.Clignote;
 
@@ -38,8 +39,9 @@ public class Main extends Activity {
     private Button moinstemps = null;
 
 
-    //
-    private  int vaLtempo = 20;
+
+    //valeur du tempo (vitesse)
+    private  int vaLtempo = 100;
 
     private  int vaLtemps = 1;
 
@@ -56,7 +58,7 @@ public class Main extends Activity {
         affichtemps = (TextView) findViewById(R.id.clignote);
         affichtemps.setText(vaLtemps+"coups");
         clignote = new Clignote(affichtemps);
-        clignote.blink(1000);
+        //clignote.blink(10*vaLtempo);
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
@@ -68,8 +70,17 @@ public class Main extends Activity {
         temps = (TextView) findViewById(R.id.temps);
         temps.setText(""+vaLtemps);
 
+        //recuperation des bouton plus et moins du tempo(vitesse)
         plustempo = (Button) findViewById(R.id.plustempo);
+        moinstempo = (Button) findViewById(R.id.moinstempo);
+        //onjet ecouteur
+        EcouteurPlusMoinsTempo ecouteurPlusMoinsTempo = new EcouteurPlusMoinsTempo(this);
 
+        plustempo.setOnClickListener(ecouteurPlusMoinsTempo);
+        moinstempo.setOnClickListener(ecouteurPlusMoinsTempo);
+
+        plustempo.setOnTouchListener(ecouteurPlusMoinsTempo);
+        moinstempo.setOnTouchListener(ecouteurPlusMoinsTempo);
     }
 
 
@@ -118,11 +129,51 @@ public class Main extends Activity {
         return moinstemps;
     }
 
-    public int getVaLtempo() {
-        return vaLtempo;
-    }
+    public int getVaLtempo() {return vaLtempo;}
 
     public int getVaLtemps() {
         return vaLtemps;
+    }
+
+    public void setStart(ToggleButton start) {
+        this.start = start;
+    }
+
+    public void setClignote(Clignote clignote) {
+        this.clignote = clignote;
+    }
+
+    public void setAffichtemps(TextView affichtemps) {
+        this.affichtemps = affichtemps;
+    }
+
+    public void setTempo(TextView tempo) {
+        this.tempo = tempo;
+    }
+
+    public void setTemps(TextView temps) {
+        this.temps = temps;
+    }
+
+    public void setPlustempo(Button plustempo) {
+        this.plustempo = plustempo;
+    }
+
+    public void setPlustemps(Button plustemps) {
+        this.plustemps = plustemps;
+    }
+
+    public void setMoinstempo(Button moinstempo) {
+        this.moinstempo = moinstempo;
+    }
+
+    public void setMoinstemps(Button moinstemps) {
+        this.moinstemps = moinstemps;
+    }
+
+   public void setVaLtempo(int vaLtempo) {this.vaLtempo = vaLtempo;}
+
+    public void setVaLtemps(int vaLtemps) {
+        this.vaLtemps = vaLtemps;
     }
 }
