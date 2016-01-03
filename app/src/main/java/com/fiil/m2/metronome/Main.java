@@ -54,7 +54,7 @@ public class Main extends Activity {
     private void buildWidgets() {
         //le clignotant QUI clignote
         affichtemps = (TextView) findViewById(R.id.clignote);
-        affichtemps.setText(""+vaLtemps+"cout");
+        affichtemps.setText(""+vaLtemps+"coup");
         clignote = new Clignote(affichtemps);
         clignote.blink(1000);
 
@@ -65,8 +65,9 @@ public class Main extends Activity {
         tempo = (TextView) findViewById(R.id.tempo);
         tempo.setText(""+vaLtempo);
 
+        //le temps du battement
         temps = (TextView) findViewById(R.id.temps);
-        temps.setText(""+vaLtemps);
+        temps.setText(""+temps+""+vaLtemps);
 
         plustempo = (Button) findViewById(R.id.plustempo);
 
