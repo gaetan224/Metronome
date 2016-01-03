@@ -25,9 +25,9 @@ public enum Temps{
             return battement;
         }
 
-         //public short getNum() {
-            // return Integer.parseInt(battement);
-         //}
+         public int getNum() {
+             return Integer.parseInt(battement);
+         }
 
 }
 
