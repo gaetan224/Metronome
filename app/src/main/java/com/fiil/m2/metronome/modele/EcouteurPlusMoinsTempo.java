@@ -18,13 +18,18 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     //l'activité principal pour recuperer ses view let les mettre  a jour
     private Main main;
 
-    //valeur du tempo (vitesse)
+    //valeur du tempo (vitesse): nombre de battement par minute
     private  int vaLtempo = 100;
 
     //valeur min et max du tempo
     private static final int Min_Value = 10;
     private static final int Max_Value = 260;
-    private static final int Maintain_Value = 5;
+
+    // valeur d'incrémentation rapide
+    private static final int Maintain_Value = 10;
+
+    //temps pour une battement
+    int realval = 0;
 
     // pour gerer l'incrémentation et décrementation continue des bouton tempo plus et moins
     private Handler mHandler;
@@ -127,13 +132,12 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     public void  doActionInc( int inc){
         // si c'est plus
 
-
         vaLtempo+=inc;
-        realval-=inc;
-        realval = (realval < 0 || vaLtempo > Max_Value)? Max_Value:realval;
         vaLtempo = (vaLtempo > Max_Value)? Min_Value:vaLtempo;
+        realval = (int) ((60.0/vaLtempo)*1000);
+        Log.d("real value : ", "tempo = "+realval);
 
-        Log.d("realval: ", "realval = "+realval);
+
         main.setVaLtempo(vaLtempo);
         if(main.getStart().isChecked()){
 
@@ -141,23 +145,21 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         }else{
             main.getClignote().stop();
         }
+
         //mise a jour de la valeur tempo de l'activité principal
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
     }
 
-    //static int realvaldec = 100;
-    //static int realvalInc = 100;
-    int realval = Max_Value - 100;
+
+
 
     public void  doActionDec( int inc){
         // si c'est moins
         vaLtempo-=inc;
-        realval+=inc;
-        realval = (realval > Max_Value  || vaLtempo < Min_Value)? Min_Value:realval;
         vaLtempo = (vaLtempo < Min_Value)? Max_Value:vaLtempo;
-
-        Log.d("realval: ", "realval = "+realval);
+        realval = (int) ((60.0/vaLtempo)*1000);
+        Log.d("real value : ", "tempo = "+realval);
         if(main.getStart().isChecked()){
 
             main.getClignote().blink((realval));

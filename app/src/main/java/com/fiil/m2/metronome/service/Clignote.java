@@ -29,7 +29,7 @@ public class Clignote {
 
     public void blink(int tempsAclignoter){
 
-        anim.setDuration(5*tempsAclignoter);
+        anim.setDuration(tempsAclignoter);
         text.startAnimation(anim);
 
     }
