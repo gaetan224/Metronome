@@ -9,6 +9,7 @@ import android.widget.ToggleButton;
 import android.util.Log;
 
 import com.fiil.m2.metronome.modele.EcouteurStart;
+import com.fiil.m2.metronome.service.Battements;
 import com.fiil.m2.metronome.service.Clignote;
 
 
@@ -36,12 +37,12 @@ public class Main extends Activity {
     private Button plustemps = null;
     private Button moinstempo = null;
     private Button moinstemps = null;
-
+    private int battements = 4;
 
     //
-    private  int vaLtempo = 20;
+    private int vaLtempo = 20;
 
-    private  int vaLtemps = 1;
+    private int vaLtemps = 1;
 
 
     @Override
@@ -52,9 +53,9 @@ public class Main extends Activity {
     }
 
     private void buildWidgets() {
-        //le clignotant QUI clignote
+        //le clignotant
         affichtemps = (TextView) findViewById(R.id.clignote);
-        affichtemps.setText(""+vaLtemps+"coup");
+        affichtemps.setText("" + vaLtemps + "coup");
         clignote = new Clignote(affichtemps);
         clignote.blink(1000);
 
@@ -63,15 +64,65 @@ public class Main extends Activity {
         start.setOnClickListener(new EcouteurStart(this));
 
         tempo = (TextView) findViewById(R.id.tempo);
-        tempo.setText(""+vaLtempo);
+        tempo.setText("" + vaLtempo);
 
         //le temps du battement
         temps = (TextView) findViewById(R.id.temps);
-        temps.setText(""+temps+""+vaLtemps);
+        temps.setText("" + battements);
 
         plustempo = (Button) findViewById(R.id.plustempo);
 
-    }
+        plustemps = (Button) findViewById(R.id.plustemps);
+        plustemps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView temps = (TextView) findViewById(R.id.temps);
+                String battement = temps.getText().toString();
+                int bat = Integer.parseInt(battement);
+                for (Battements b : Battements.values()) {
+                    if (bat == b.getNum()) {
+                        if ((bat == 1) || (bat == 2) || (bat == 3) || (bat == 4) || (bat == 5) || (bat == 6) || (bat == 7) || (bat == 8) || (bat == 9)) {
+                            bat++;
+                            String batt = String.valueOf(bat);
+                            temps.setText("" + batt);
+                            break;
+                        } else if (bat == 10) {
+                            bat = 1;
+                            String batt = String.valueOf(bat);
+                            temps.setText("" + batt);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
 
+        moinstemps = (Button) findViewById(R.id.moinstemps);
+        moinstemps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView temps = (TextView) findViewById(R.id.temps);
+                String battement = temps.getText().toString();
+                int bat = Integer.parseInt(battement);
+                for (Battements b : Battements.values()) {
+                    if (bat == b.getNum()) {
+                        if ((bat == 10) || (bat == 2) || (bat == 3) || (bat == 4) || (bat == 5) || (bat == 6) || (bat == 7) || (bat == 8) || (bat == 9)) {
+                            bat--;
+                            String batt = String.valueOf(bat);
+                            temps.setText("" + batt);
+                            break;
+                        } else if (bat == 1) {
+                            bat = 10;
+                            String batt = String.valueOf(bat);
+                            temps.setText("" + batt);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+
+    }
 
 }
