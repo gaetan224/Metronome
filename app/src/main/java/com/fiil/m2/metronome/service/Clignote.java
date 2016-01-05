@@ -14,7 +14,7 @@ public class Clignote {
         this.text = text;
     }
 
-    public void blink(int tempsAclignoter ){ //timeToBlink en milissegunds
+    public void blink(int tempsAclignoter ){ //timeToBlink en milis secondes
         final Handler handler = new Handler();
         final int timeToBlink = tempsAclignoter;
 

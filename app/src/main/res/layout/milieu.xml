@@ -1,109 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="360dp">
-
-
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:weightSum="1">
-
-        <TextView
-            style="@style/text_temps"
-            android:layout_width="88dp"
-            android:layout_height="80dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1"
-            android:gravity="center"
-            android:id="@+id/tempo"
-            android:layout_below="@+id/textView"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tempo"
-            android:id="@+id/textView"
-            android:layout_marginLeft="76dp"
-            android:layout_marginStart="76dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:src="@drawable/up"
-            android:layout_alignTop="@+id/tempo"
-            android:layout_toRightOf="@+id/tempo"
-            android:layout_toEndOf="@+id/tempo" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton2"
-            android:src="@drawable/down"
-            android:layout_below="@+id/imageButton"
-            android:layout_toRightOf="@+id/tempo"
-            android:layout_toEndOf="@+id/tempo" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="160dp">
-
-        <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vibreur"
-        android:id="@+id/vibreur"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/son"
-            android:id="@+id/son"
-            android:layout_below="@id/vibreur"
-             />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="1"
-            android:gravity="center"
-            android:id="@+id/temps"
-            style="@style/text_temps"
-            android:layout_alignBottom="@+id/temps_mesure"
-            android:layout_centerHorizontal="true" />
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/temps_mesure"
-            android:layout_alignBottom="@+id/son"
-            android:layout_toRightOf="@+id/temps"
-            android:layout_toEndOf="@+id/temps"
-            android:layout_marginLeft="33dp"
-            android:layout_marginStart="33dp" />
-        " />
-
-    </RelativeLayout>
-
-
-
-
-</LinearLayout>-->
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -216,11 +111,15 @@
             />
 
         <TextView
+            android:id="@+id/clignote"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.00"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="4 temps"
             android:textSize="20dp"
             android:gravity="right"
-
-            android:id="@+id/clignote"
+            android:textColor="@color/red"
             />
 
 
@@ -256,3 +155,7 @@
     </TableRow>
 
 </TableLayout>
+
+
+
+

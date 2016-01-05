@@ -3,7 +3,7 @@ package com.fiil.m2.metronome.service;
 /**
  * Created by sarra on 03/01/2016.
  */
-public enum Temps{
+public enum Battements {
         un("1"),
         deux("2"),
         trois("3"),
@@ -17,7 +17,7 @@ public enum Temps{
 
         private String battement;
 
-        Temps(String battement) {
+        Battements(String battement) {
             this.battement = battement;
         }
 
