@@ -79,21 +79,11 @@ public class Main extends Activity {
                 TextView temps = (TextView) findViewById(R.id.temps);
                 String battement = temps.getText().toString();
                 int bat = Integer.parseInt(battement);
-                for (Battements b : Battements.values()) {
-                    if (bat == b.getNum()) {
-                        if ((bat == 1) || (bat == 2) || (bat == 3) || (bat == 4) || (bat == 5) || (bat == 6) || (bat == 7) || (bat == 8) || (bat == 9)) {
-                            bat++;
-                            String batt = String.valueOf(bat);
-                            temps.setText("" + batt);
-                            break;
-                        } else if (bat == 10) {
-                            bat = 1;
-                            String batt = String.valueOf(bat);
-                            temps.setText("" + batt);
-                            break;
-                        }
-                    }
-                }
+                bat++;
+                if (bat > 10)
+                    bat=1;
+                temps.setText(""+bat);
+
             }
         });
 
@@ -104,24 +94,12 @@ public class Main extends Activity {
                 TextView temps = (TextView) findViewById(R.id.temps);
                 String battement = temps.getText().toString();
                 int bat = Integer.parseInt(battement);
-                for (Battements b : Battements.values()) {
-                    if (bat == b.getNum()) {
-                        if ((bat == 10) || (bat == 2) || (bat == 3) || (bat == 4) || (bat == 5) || (bat == 6) || (bat == 7) || (bat == 8) || (bat == 9)) {
-                            bat--;
-                            String batt = String.valueOf(bat);
-                            temps.setText("" + batt);
-                            break;
-                        } else if (bat == 1) {
-                            bat = 10;
-                            String batt = String.valueOf(bat);
-                            temps.setText("" + batt);
-                            break;
-                        }
-                    }
-                }
+                bat--;
+                if (bat < 1)
+                    bat=10;
+                temps.setText(""+bat);
             }
         });
-
 
     }
 
