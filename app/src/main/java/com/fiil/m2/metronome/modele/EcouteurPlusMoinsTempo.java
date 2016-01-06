@@ -147,6 +147,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         }
 
         //mise a jour de la valeur tempo de l'activité principal
+        main.setRealval(realval);
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
     }
@@ -167,6 +168,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
             main.getClignote().stop();
         }
         //mise a jour de la valeur tempo de l'activité principal
+        main.setRealval(realval);
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
     }

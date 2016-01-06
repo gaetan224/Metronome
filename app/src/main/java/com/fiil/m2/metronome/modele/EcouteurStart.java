@@ -21,7 +21,8 @@ public class EcouteurStart implements View.OnClickListener {
 
         if(v.getId() == R.id.demarrer){
             if(main.getStart().isChecked()){
-
+                // on démarre le clignotant en lui donnant le temps de clignotement (realval)
+                main.getClignote().blink(main.getRealval());
 
             }else{
                 main.getClignote().stop();

@@ -47,6 +47,12 @@ public class Main extends Activity {
 
     private  int vaLtemps = 1;
 
+    //temps pour une battement
+    private int realval = (int) ((60.0/vaLtempo)*1000);
+
+    //numero de battment ou son ou clignote [1 .. 10]
+    private int bat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +64,7 @@ public class Main extends Activity {
     private void buildWidgets() {
         //le clignotant
         affichtemps = (TextView) findViewById(R.id.clignote);
-        affichtemps.setText(vaLtemps+"coups");
+        affichtemps.setText(vaLtemps+"");
         clignote = new Clignote(affichtemps);
         //clignote.blink(vaLtempo);
 
@@ -91,6 +97,43 @@ public class Main extends Activity {
 
         plustempo.setOnTouchListener(ecouteurPlusMoinsTempo);
         moinstempo.setOnTouchListener(ecouteurPlusMoinsTempo);
+
+        //le temps du battement
+        temps = (TextView) findViewById(R.id.temps);
+
+
+        plustempo = (Button) findViewById(R.id.plustempo);
+
+        plustemps = (Button) findViewById(R.id.plustemps);
+        plustemps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView temps = (TextView) findViewById(R.id.temps);
+                String battement = temps.getText().toString();
+                bat = Integer.parseInt(battement);
+                bat++;
+                if (bat > Max_Value)
+                    bat=Min_Value;
+                temps.setText(""+bat);
+
+            }
+        });
+
+        moinstemps = (Button) findViewById(R.id.moinstemps);
+        moinstemps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView temps = (TextView) findViewById(R.id.temps);
+                String battement = temps.getText().toString();
+                int bat = Integer.parseInt(battement);
+                bat--;
+                if (bat < Min_Value)
+                    bat = Max_Value;
+                temps.setText("" + bat);
+            }
+        });
+
+
     }
 
 
@@ -185,5 +228,13 @@ public class Main extends Activity {
 
     public void setVaLtemps(int vaLtemps) {
         this.vaLtemps = vaLtemps;
+    }
+
+    public void setRealval(int realval) {
+        this.realval = realval;
+    }
+
+    public int getRealval() {
+        return realval;
     }
 }
