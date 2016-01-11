@@ -43,6 +43,7 @@ public class Compteur  {
     public  void start(int tempsACompter){ // temps a compter
 
         Log.d("Start : ", "starting ... compteur");
+        stop();
         timer = new Timer();
         task = new TimerTask(){
 
@@ -84,23 +85,5 @@ public class Compteur  {
     }
 
 
-    private Runnable updateTimerThread = new Runnable() {
-        @Override
-        public void run() {
-            task = new TimerTask(){
 
-                public void run() {
-                    counter++;
-                    if(counter > main.getBat()) counter = main.getMin_Value();
-                    if(counter < main.getMin_Value()) counter = main.getBat();
-
-                    System.out.println("comptement == " + counter);
-                    main.getAffichtemps().setText("" + counter);
-
-                }
-            };
-
-            timer.scheduleAtFixedRate(task, new Date(), main.getRealval());
-        }
-    };
 }

@@ -84,12 +84,15 @@ public class Main extends Activity {
 
     Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
 
+        temps = (TextView) findViewById(R.id.temps);
+        temps.setText("" + vaLtemps);
+
         //le clignotant
         affichtemps = (TextView) findViewById(R.id.clignote);
         affichtemps.setText(vaLtemps+"");
 
         //instanciation du clignotant avec en paramatre le texte a faire clignoter
-        clignote = new Clignote(affichtemps);
+        clignote = new Clignote(temps);
 
         //instanciation du compteur
         compteur = new Compteur(this);
@@ -101,8 +104,7 @@ public class Main extends Activity {
         tempo = (TextView) findViewById(R.id.tempo);
         tempo.setText(""+vaLtempo);
 
-        temps = (TextView) findViewById(R.id.temps);
-        temps.setText(""+vaLtemps);
+
 
         //recuperation des bouton plus et moins du tempo(vitesse)
         plustempo = (Button) findViewById(R.id.plustempo);
