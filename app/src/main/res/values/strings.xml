@@ -9,6 +9,7 @@
     <string name="son">Son </string>
     <string name="tempo">Tempo</string>
     <string name="temps">Mesure de temps</string>
+    <string name="coupsmin">coups/min</string>
 </resources>
 
 

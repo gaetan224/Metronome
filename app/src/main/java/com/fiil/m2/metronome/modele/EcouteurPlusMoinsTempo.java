@@ -26,7 +26,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     private static final int Max_Value = 260;
 
     // valeur d'incrémentation rapide
-    private static final int Maintain_Value = 10;
+    private static final int Maintain_Value = 5;
 
     //temps pour une battement
     int realval = 0;
@@ -72,12 +72,12 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
                     // si c'est plus
                     case R.id.plustempo:
 
-                        mHandler.postDelayed(ActionInc, 500);
+                        mHandler.postDelayed(ActionInc, 200);
                         break;
                     // si c'est moins
                     case R.id.moinstempo:
 
-                        mHandler.postDelayed(ActionDec, 500);
+                        mHandler.postDelayed(ActionDec, 200);
                         break;
 
                 }
@@ -112,7 +112,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         @Override public void run() {
             Log.d("actionInc", "Performing actionINc...");
             doActionInc(Maintain_Value);
-            mHandler.postDelayed(this, 500);
+            mHandler.postDelayed(this, 200);
         }
     };
 
@@ -120,7 +120,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         @Override public void run() {
             Log.d("actionDec", "Performing actionDec...");
             doActionDec(Maintain_Value);
-            mHandler.postDelayed(this, 500);
+            mHandler.postDelayed(this, 200);
         }
     };
 
@@ -142,8 +142,10 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         if(main.getStart().isChecked()){
 
             main.getClignote().blink(realval);
+            main.getCompteur().start(realval);
         }else{
             main.getClignote().stop();
+            main.getCompteur().stop();
         }
 
         //mise a jour de la valeur tempo de l'activité principal
@@ -163,9 +165,11 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         Log.d("real value : ", "tempo = "+realval);
         if(main.getStart().isChecked()){
 
-            main.getClignote().blink((realval));
+            main.getClignote().blink(realval);
+            main.getCompteur().start(realval);
         }else{
             main.getClignote().stop();
+            main.getCompteur().stop();
         }
         //mise a jour de la valeur tempo de l'activité principal
         main.setRealval(realval);

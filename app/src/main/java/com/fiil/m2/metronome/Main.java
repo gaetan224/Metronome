@@ -3,8 +3,6 @@ package com.fiil.m2.metronome;
 import android.view.View;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -13,6 +11,7 @@ import android.util.Log;
 import com.fiil.m2.metronome.modele.EcouteurPlusMoinsTempo;
 import com.fiil.m2.metronome.modele.EcouteurStart;
 import com.fiil.m2.metronome.service.Clignote;
+import com.fiil.m2.metronome.service.Compteur;
 
 
 public class Main extends Activity {
@@ -31,6 +30,9 @@ public class Main extends Activity {
     //le texte clignotant
     private TextView affichtemps = null;
 
+    // compteur
+    private Compteur compteur;
+
     private TextView tempo = null;
 
     private TextView temps = null;
@@ -47,34 +49,50 @@ public class Main extends Activity {
 
     private  int vaLtemps = 1;
 
-    //temps pour une battement
+    //temps pour une battement ou bip ou clignote
     private int realval = (int) ((60.0/vaLtempo)*1000);
 
-    //numero de battment ou son ou clignote [1 .. 10]
-    private int bat;
+    //numero de battment ou bip ou clignote [1 .. 10]
+    private int bat = Min_Value;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Oncreate : ", "Création de l'activité principale de l'application");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.buildWidgets();
     }
 
     private void buildWidgets() {
+    /*
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask(){
+            int  counter=0;
+            public void run() {
+                counter++;
+                System.out.println("comptement == "+counter);
+            }
+        }, new Date(), 1000);
+*/
+
+
+
+
+
+    Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
+
         //le clignotant
         affichtemps = (TextView) findViewById(R.id.clignote);
         affichtemps.setText(vaLtemps+"");
+
+        //instanciation du clignotant avec en paramatre le texte a faire clignoter
         clignote = new Clignote(affichtemps);
-        //clignote.blink(vaLtempo);
 
-
-
-
-        //affichtemps.clearAnimation();
-
-
-
+        //instanciation du compteur
+        compteur = new Compteur(this);
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
@@ -102,39 +120,39 @@ public class Main extends Activity {
         temps = (TextView) findViewById(R.id.temps);
 
 
-        plustempo = (Button) findViewById(R.id.plustempo);
 
+        moinstemps = (Button) findViewById(R.id.moinstemps);
         plustemps = (Button) findViewById(R.id.plustemps);
-        plustemps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView temps = (TextView) findViewById(R.id.temps);
-                String battement = temps.getText().toString();
-                bat = Integer.parseInt(battement);
+
+        moinstemps.setOnClickListener(plusmoinTempsListener);
+        plustemps.setOnClickListener(plusmoinTempsListener);
+
+    }
+
+    // Listener des bouton plus et moins du temps
+    private View.OnClickListener plusmoinTempsListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String battement = temps.getText().toString();
+            bat = Integer.parseInt(battement);
+
+            if(v.getId() == R.id.plustemps){
                 bat++;
                 if (bat > Max_Value)
                     bat=Min_Value;
                 temps.setText(""+bat);
+                Log.d("bat: ", "bat dans main ++ "+bat);
 
-            }
-        });
-
-        moinstemps = (Button) findViewById(R.id.moinstemps);
-        moinstemps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView temps = (TextView) findViewById(R.id.temps);
-                String battement = temps.getText().toString();
-                int bat = Integer.parseInt(battement);
+            }else{
                 bat--;
                 if (bat < Min_Value)
                     bat = Max_Value;
                 temps.setText("" + bat);
+                Log.d("bat: ", "bat dans main -- " + bat);
+
             }
-        });
-
-
-    }
+        }
+    };
 
 
 
@@ -236,5 +254,13 @@ public class Main extends Activity {
 
     public int getRealval() {
         return realval;
+    }
+
+    public int getBat() {
+        return bat;
+    }
+
+    public Compteur getCompteur() {
+        return compteur;
     }
 }
