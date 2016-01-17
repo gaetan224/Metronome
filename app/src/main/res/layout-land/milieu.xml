@@ -44,6 +44,18 @@
             android:id="@+id/moinstempo"
             android:layout_column="2" />
 
+        <CheckBox
+            android:text="@string/vibreur"
+            android:id="@+id/vibreur"
+            />
+
+        <TextView
+            android:text="4 temps"
+            android:textSize="20dp"
+            android:gravity="right"
+
+            android:id="@+id/clignote"
+            />
 
     </TableRow>
 
@@ -61,7 +73,7 @@
         android:textSize="20dp"
         />
 
-    <TableRow>
+
 
 
         <Button
@@ -91,53 +103,10 @@
             android:textSize="50dp"
             android:id="@+id/moinstemps"
             android:layout_column="2" />
-
-
-    </TableRow>
-
-    <View
-        android:layout_height="2dip"
-        android:background="#FF909090"
-        />
-
-
-    <TableRow
-        android:padding="6dip"
-        >
-
-        <CheckBox
-            android:text="@string/vibreur"
-            android:id="@+id/vibreur"
-            />
-
-        <TextView
-            android:id="@+id/clignote"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1.00"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="4 temps"
-            android:textSize="20dp"
-            android:gravity="right"
-            android:textColor="@color/red"
-            />
-
-
-    </TableRow>
-
-    <TableRow
-        android:padding="6dip"
-        >
-
         <CheckBox
             android:text="@string/son"
             android:id="@+id/son"
             />
-
-
-    </TableRow>
-
-
 
     <TableRow
         android:padding="3dip"
@@ -155,7 +124,3 @@
     </TableRow>
 
 </TableLayout>
-
-
-
-

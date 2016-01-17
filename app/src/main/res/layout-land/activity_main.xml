@@ -111,15 +111,11 @@
             />
 
         <TextView
-            android:id="@+id/clignote"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1.00"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="4 temps"
             android:textSize="20dp"
             android:gravity="right"
-            android:textColor="@color/red"
+
+            android:id="@+id/clignote"
             />
 
 
@@ -155,7 +151,3 @@
     </TableRow>
 
 </TableLayout>
-
-
-
-
