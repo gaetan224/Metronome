@@ -131,7 +131,7 @@ public class Main extends Activity {
 
     }
 
-    // Listener des bouton plus et moins du temps
+    // Listener des boutton plus et moins du temps
     private View.OnClickListener plusmoinTempsListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
