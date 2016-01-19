@@ -4,6 +4,7 @@ import android.view.View;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.fiil.m2.metronome.modele.EcouteurPlusMoinsTempo;
 import com.fiil.m2.metronome.modele.EcouteurStart;
 import com.fiil.m2.metronome.service.Clignote;
 import com.fiil.m2.metronome.service.Compteur;
+import com.fiil.m2.metronome.service.Vibreur;
 
 
 public class Main extends Activity {
@@ -27,11 +29,14 @@ public class Main extends Activity {
     //service clignote
     private Clignote clignote = null;
 
+    //compteur
+    private Compteur compteur;
+
+     // le vibreur
+    private Vibreur vibreur;
+
     //le texte clignotant
     private TextView affichtemps = null;
-
-    // compteur
-    private Compteur compteur;
 
     private TextView tempo = null;
 
@@ -54,8 +59,7 @@ public class Main extends Activity {
 
     //numero de battment ou bip ou clignote [1 .. 10]
     private int bat = Min_Value;
-
-
+    private CheckBox ch_vibreur = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +70,8 @@ public class Main extends Activity {
     }
 
     private void buildWidgets() {
-    /*
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask(){
-            int  counter=0;
-            public void run() {
-                counter++;
-                System.out.println("comptement == "+counter);
-            }
-        }, new Date(), 1000);
-*/
-
-
-
-
-
-    Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
+        Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
 
         temps = (TextView) findViewById(R.id.temps);
         temps.setText("" + vaLtemps);
@@ -97,13 +86,14 @@ public class Main extends Activity {
         //instanciation du compteur
         compteur = new Compteur(this);
 
+        vibreur = new Vibreur(this);
+
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
         start.setOnClickListener(new EcouteurStart(this));
 
         tempo = (TextView) findViewById(R.id.tempo);
         tempo.setText(""+vaLtempo);
-
 
 
         //recuperation des bouton plus et moins du tempo(vitesse)
@@ -121,7 +111,7 @@ public class Main extends Activity {
         //le temps du battement
         temps = (TextView) findViewById(R.id.temps);
 
-
+        ch_vibreur = (CheckBox)findViewById(R.id.vibreur);
 
         moinstemps = (Button) findViewById(R.id.moinstemps);
         plustemps = (Button) findViewById(R.id.plustemps);
@@ -156,7 +146,27 @@ public class Main extends Activity {
         }
     };
 
+    public  void startMetronome(int offset){
+        long i = System.currentTimeMillis();
+        clignote.blink(realval, 30);
+        long j = System.currentTimeMillis();
+        int off = (int) (offset - (j - i) + realval*0.25);
+        /* il faut commencer en
+         meme temps du coup on retire le temps pris par le clignotant pour demarrer */
 
+        compteur.start(realval, off);
+
+        if(ch_vibreur.isChecked()){
+            long k = System.currentTimeMillis();
+            vibreur.vibre(realval,(offset - (k - j)));
+        }
+    }
+
+    public void stopMetronome(){
+        clignote.stop();
+        compteur.stop();
+        vibreur.stop();
+    }
 
     public static int getMax_Value() {
         return Max_Value;
@@ -244,7 +254,7 @@ public class Main extends Activity {
         this.moinstemps = moinstemps;
     }
 
-   public void setVaLtempo(int vaLtempo) {this.vaLtempo = vaLtempo;}
+    public void setVaLtempo(int vaLtempo) {this.vaLtempo = vaLtempo;}
 
     public void setVaLtemps(int vaLtemps) {
         this.vaLtemps = vaLtemps;

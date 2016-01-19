@@ -40,7 +40,7 @@ public class Compteur  {
 
 
 
-    public  void start(int tempsACompter){ // temps a compter
+    public  void start(int tempsACompter,long offset){ // temps a compter
 
         Log.d("Start : ", "starting ... compteur");
         stop();
@@ -49,7 +49,7 @@ public class Compteur  {
 
             public void run() {
                 counter++;
-                Log.d("bat", "bat dans TimerTask "+main.getBat());
+                //Log.d("bat", "bat dans TimerTask "+main.getBat());
                 if(counter > main.getBat()) counter = main.getMin_Value();
                 //if(counter < main.getMin_Value()) counter = main.getBat();
 
@@ -61,7 +61,7 @@ public class Compteur  {
                     public void run() {
 
 
-                        Log.d("Compteur UITHread", "Compteur ="+counter);
+                      //  Log.d("Compteur UITHread", "Compteur ="+counter);
 
 
                         main.getAffichtemps().setText("" + counter);
@@ -71,7 +71,7 @@ public class Compteur  {
             };
 
 
-        timer.scheduleAtFixedRate(task, new Date(), tempsACompter);
+        timer.scheduleAtFixedRate(task, offset, tempsACompter);
 
 
     }

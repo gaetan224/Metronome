@@ -137,21 +137,17 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         realval = (int) ((60.0/vaLtempo)*1000);
         Log.d("real value : ", "tempo = "+realval);
 
-
-        main.setVaLtempo(vaLtempo);
-        if(main.getStart().isChecked()){
-
-            main.getClignote().blink(realval);
-            main.getCompteur().start(realval);
-        }else{
-            main.getClignote().stop();
-            main.getCompteur().stop();
-        }
-
         //mise a jour de la valeur tempo de l'activité principal
         main.setRealval(realval);
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
+
+        if(main.getStart().isChecked()){
+            main.startMetronome(50);
+
+        }else{
+            main.stopMetronome();
+        }
     }
 
 
@@ -162,19 +158,34 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         vaLtempo-=inc;
         vaLtempo = (vaLtempo < Min_Value)? Max_Value:vaLtempo;
         realval = (int) ((60.0/vaLtempo)*1000);
-        Log.d("real value : ", "tempo = "+realval);
-        if(main.getStart().isChecked()){
+        //Log.d("real value : ", "tempo = " + realval);
 
-            main.getClignote().blink(realval);
-            main.getCompteur().start(realval);
-        }else{
-            main.getClignote().stop();
-            main.getCompteur().stop();
-        }
         //mise a jour de la valeur tempo de l'activité principal
         main.setRealval(realval);
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
+
+        if(main.getStart().isChecked()){
+           main.startMetronome(50);
+
+        }else{
+            main.stopMetronome();
+        }
+
     }
+
+   /* public  void startMetronome(){
+        long i = System.currentTimeMillis();
+        main.getClignote().blink(main.getRealval(), 30);
+        long j = System.currentTimeMillis();
+        main.getCompteur().start(main.getRealval(), 30 - (j - i));
+
+    }
+
+    public void stopMetronome(){
+        main.getClignote().stop();
+        main.getCompteur().stop();
+
+    }*/
 
 }
