@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.util.Log;
@@ -119,6 +121,19 @@ public class Main extends Activity {
         moinstemps.setOnClickListener(plusmoinTempsListener);
         plustemps.setOnClickListener(plusmoinTempsListener);
 
+        ch_vibreur.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked && start.isChecked()){
+                    vibreur.vibre(realval,(50 - (k - j)));
+                }else{
+                    vibreur.stop();
+                }
+
+            }
+        }));
+
     }
 
     // Listener des bouton plus et moins du temps
@@ -145,19 +160,21 @@ public class Main extends Activity {
             }
         }
     };
-
+    long j;
+    long k;
     public  void startMetronome(int offset){
         long i = System.currentTimeMillis();
-        clignote.blink(realval, 30);
-        long j = System.currentTimeMillis();
+        clignote.blink(realval, offset);
+         j = System.currentTimeMillis();
         int off = (int) (offset - (j - i) + realval*0.25);
         /* il faut commencer en
          meme temps du coup on retire le temps pris par le clignotant pour demarrer */
 
         compteur.start(realval, off);
+        k = System.currentTimeMillis();
 
         if(ch_vibreur.isChecked()){
-            long k = System.currentTimeMillis();
+            k = System.currentTimeMillis();
             vibreur.vibre(realval,(offset - (k - j)));
         }
     }

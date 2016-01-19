@@ -8,6 +8,8 @@ import com.fiil.m2.metronome.Main;
 /**
  * Created by Gaetan on 19/01/2016.
  */
+
+//http://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate
 public class Vibreur {
 
     private Main main;
