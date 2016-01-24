@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:stretchColumns="1">
 
     <TextView
@@ -10,7 +11,7 @@
         android:textSize="20dp"
         />
     <TableRow
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:paddingTop="10dip"
         >
@@ -114,7 +115,6 @@
             android:text="4 temps"
             android:textSize="20dp"
             android:gravity="right"
-
             android:id="@+id/clignote"
             />
 
@@ -130,21 +130,12 @@
             android:id="@+id/son"
             />
 
-
-    </TableRow>
-
-
-
-    <TableRow
-        android:padding="3dip"
-        >
-
         <ToggleButton
             android:layout_column="0"
             android:layout_span="3"
-            android:layout_width="250dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="right"
             android:textOff="@string/start"
             android:textOn="@string/stop"
             android:id="@+id/demarrer" />
