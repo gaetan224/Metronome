@@ -1,5 +1,8 @@
 package com.fiil.m2.metronome;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.view.View;
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.util.Log;
 
 import com.fiil.m2.metronome.modele.EcouteurPlusMoinsTempo;
 import com.fiil.m2.metronome.modele.EcouteurStart;
+import com.fiil.m2.metronome.service.BipNormal;
 import com.fiil.m2.metronome.service.Clignote;
 import com.fiil.m2.metronome.service.Compteur;
 import com.fiil.m2.metronome.service.Vibreur;
@@ -36,6 +40,8 @@ public class Main extends Activity {
 
      // le vibreur
     private Vibreur vibreur;
+
+    BipNormal bipn;
 
     //le texte clignotant
     private TextView affichtemps = null;
@@ -61,17 +67,28 @@ public class Main extends Activity {
 
     //numero de battment ou bip ou clignote [1 .. 10]
     private int bat = Min_Value;
+    //checkbox vibreur
     private CheckBox ch_vibreur = null;
+
+    //checkbox bip
+    private CheckBox ch_son = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("Oncreate : ", "Création de l'activité principale de l'application");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.buildWidgets();
+        try {
+            this.buildWidgets();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void buildWidgets() {
+    private void buildWidgets() throws InterruptedException {
+
+
 
         Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
 
@@ -89,6 +106,8 @@ public class Main extends Activity {
         compteur = new Compteur(this);
 
         vibreur = new Vibreur(this);
+
+        bipn =  new BipNormal(this);
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
@@ -113,7 +132,7 @@ public class Main extends Activity {
         //le temps du battement
         temps = (TextView) findViewById(R.id.temps);
 
-        ch_vibreur = (CheckBox)findViewById(R.id.vibreur);
+
 
         moinstemps = (Button) findViewById(R.id.moinstemps);
         plustemps = (Button) findViewById(R.id.plustemps);
@@ -121,14 +140,31 @@ public class Main extends Activity {
         moinstemps.setOnClickListener(plusmoinTempsListener);
         plustemps.setOnClickListener(plusmoinTempsListener);
 
+        ch_vibreur = (CheckBox)findViewById(R.id.vibreur);
         ch_vibreur.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked && start.isChecked()){
-                    vibreur.vibre(realval,(50 - (k - j)));
-                }else{
+                if (isChecked && start.isChecked()) {
+                    vibreur.vibre(realval, (50 - (k - j)));
+                } else {
                     vibreur.stop();
+                }
+
+            }
+        }));
+
+
+
+        ch_son = (CheckBox)findViewById(R.id.son);
+        ch_son.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked && start.isChecked()){
+
+                }else{
+
                 }
 
             }
@@ -147,26 +183,27 @@ public class Main extends Activity {
                 bat++;
                 if (bat > Max_Value)
                     bat=Min_Value;
-                temps.setText(""+bat);
-                Log.d("bat: ", "bat dans main ++ "+bat);
+                temps.setText("" + bat);
+               // Log.d("bat: ", "bat dans main ++ "+bat);
 
             }else{
                 bat--;
                 if (bat < Min_Value)
                     bat = Max_Value;
                 temps.setText("" + bat);
-                Log.d("bat: ", "bat dans main -- " + bat);
+                //Log.d("bat: ", "bat dans main -- " + bat);
 
             }
         }
     };
+
     long j;
     long k;
-    public  void startMetronome(int offset){
+    public  void startMetronome(int offset){// le temps qu'il faut attendre avant de lancer
         long i = System.currentTimeMillis();
         clignote.blink(realval, offset);
          j = System.currentTimeMillis();
-        int off = (int) (offset - (j - i) + realval*0.25);
+        int off = (int) (offset - (j - i) + realval*0.2);
         /* il faut commencer en
          meme temps du coup on retire le temps pris par le clignotant pour demarrer */
 
@@ -177,13 +214,30 @@ public class Main extends Activity {
             k = System.currentTimeMillis();
             vibreur.vibre(realval,(offset - (k - j)));
         }
+
+        if(ch_son.isChecked()){
+
+                bipn.start(realval);
+
+        }
     }
+
+
+
+
+
 
     public void stopMetronome(){
         clignote.stop();
         compteur.stop();
         vibreur.stop();
+        bipn.stop();
+
     }
+
+
+
+
 
     public static int getMax_Value() {
         return Max_Value;

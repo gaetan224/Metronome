@@ -25,13 +25,14 @@ public class Vibreur {
         long temps = tempAvibrer -100;
         long[] pattern = {offset, temps, 100}; // 1: temps avant de commencer 2: durée d'une vibration, 3: intervale de temps qui sépare les vibration
 
-
+        if(vibreur.hasVibrator())
         vibreur.vibrate(pattern, 0); // repeter a l'infini
         //vibreur.vibrate(tempAvibrer);
     }
 
     public  void stop(){
 
+        if(vibreur.hasVibrator())
         vibreur.cancel();
     }
 }

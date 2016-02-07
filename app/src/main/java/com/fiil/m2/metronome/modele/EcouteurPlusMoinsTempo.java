@@ -135,7 +135,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         vaLtempo+=inc;
         vaLtempo = (vaLtempo > Max_Value)? Min_Value:vaLtempo;
         realval = (int) ((60.0/vaLtempo)*1000);
-        Log.d("real value : ", "tempo = "+realval);
+        //Log.d("real value : ", "tempo = "+realval);
 
         //mise a jour de la valeur tempo de l'activité principal
         main.setRealval(realval);

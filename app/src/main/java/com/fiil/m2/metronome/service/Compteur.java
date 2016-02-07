@@ -42,7 +42,7 @@ public class Compteur  {
 
     public  void start(int tempsACompter,long offset){ // temps a compter
 
-        Log.d("Start : ", "starting ... compteur");
+        //Log.d("Start : ", "starting ... compteur");
         stop();
         timer = new Timer();
         task = new TimerTask(){

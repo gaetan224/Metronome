@@ -27,31 +27,13 @@ public class EcouteurStart implements View.OnClickListener {
             if(main.getStart().isChecked()){
 
                 main.startMetronome(50);
-               // startMetronome();
+
             }else{
+
                 main.stopMetronome();
-                //stopMetronome();
 
             }
         }
     }
-
-
-    // on démarre le clignotant en lui donnant le temps de clignotement (realval)
-    public  void startMetronome(){
-        long i = System.currentTimeMillis();
-        main.getClignote().blink(main.getRealval(), 30);
-        long j = System.currentTimeMillis();
-        main.getCompteur().start(main.getRealval(), 30 - (j - i));
-
-    }
-
-    public void stopMetronome(){
-        main.getClignote().stop();
-        main.getCompteur().stop();
-
-    }
-
-
 
 }
