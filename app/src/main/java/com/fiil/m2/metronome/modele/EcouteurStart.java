@@ -17,9 +17,7 @@ public class EcouteurStart implements View.OnClickListener {
 
 
     public EcouteurStart(Main m) {
-
         this.main = m;
-
     }
 
     @Override
@@ -27,22 +25,15 @@ public class EcouteurStart implements View.OnClickListener {
 
         if(v.getId() == R.id.demarrer){
             if(main.getStart().isChecked()){
-                // on démarre le clignotant en lui donnant le temps de clignotement (realval)
-                main.getClignote().blink(main.getRealval());
-                main.getCompteur().start(main.getRealval());
 
-
+                main.startMetronome(50);
 
             }else{
-                main.getClignote().stop();
-                main.getCompteur().stop();
+
+                main.stopMetronome();
 
             }
         }
     }
-
-
-
-
 
 }
