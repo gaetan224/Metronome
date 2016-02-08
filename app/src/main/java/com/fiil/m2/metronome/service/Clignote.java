@@ -22,14 +22,15 @@ public class Clignote {
     public Clignote(TextView text) {
         this.text = text;
         anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setStartOffset(20);
+
         //anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
     }
 
-    public void blink(int tempsAclignoter){
+    public void blink(int tempsAclignoter, long offset){
 
         anim.setDuration(tempsAclignoter);
+        anim.setStartOffset(offset);
         text.startAnimation(anim);
 
     }
