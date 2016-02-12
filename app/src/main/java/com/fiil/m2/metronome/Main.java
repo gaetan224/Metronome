@@ -6,6 +6,7 @@ import android.media.ToneGenerator;
 import android.view.View;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -79,6 +80,8 @@ public class Main extends Activity {
         Log.d("Oncreate : ", "Création de l'activité principale de l'application");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         try {
             this.buildWidgets();
         } catch (InterruptedException e) {
@@ -199,6 +202,7 @@ public class Main extends Activity {
 
     long j;
     long k;
+    long p;
     public  void startMetronome(int offset){// le temps qu'il faut attendre avant de lancer
         long i = System.currentTimeMillis();
         clignote.blink(realval, offset);
@@ -215,9 +219,11 @@ public class Main extends Activity {
             vibreur.vibre(realval,(offset - (k - j)));
         }
 
+
+        p = System.currentTimeMillis();
         if(ch_son.isChecked()){
 
-                bipn.start(realval);
+                bipn.start(realval,(offset - (p - k)));
 
         }
     }

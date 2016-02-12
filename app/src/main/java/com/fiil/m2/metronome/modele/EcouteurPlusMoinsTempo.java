@@ -110,7 +110,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
   // la callback de l'incrémentation continue
     Runnable ActionInc = new Runnable() {
         @Override public void run() {
-            Log.d("actionInc", "Performing actionINc...");
+            //Log.d("actionInc", "Performing actionINc...");
             doActionInc(Maintain_Value);
             mHandler.postDelayed(this, 200);
         }
@@ -118,7 +118,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
 
     Runnable ActionDec = new Runnable() {
         @Override public void run() {
-            Log.d("actionDec", "Performing actionDec...");
+            //Log.d("actionDec", "Performing actionDec...");
             doActionDec(Maintain_Value);
             mHandler.postDelayed(this, 200);
         }
