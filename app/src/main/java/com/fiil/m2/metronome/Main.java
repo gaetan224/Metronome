@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.fiil.m2.metronome.modele.EcouteurPlusMoinsTempo;
 import com.fiil.m2.metronome.modele.EcouteurStart;
+import com.fiil.m2.metronome.service.BipAccentuer;
 import com.fiil.m2.metronome.service.BipNormal;
 import com.fiil.m2.metronome.service.Clignote;
 import com.fiil.m2.metronome.service.Compteur;
@@ -42,7 +43,13 @@ public class Main extends Activity {
      // le vibreur
     private Vibreur vibreur;
 
+
+    // le bip normale
     BipNormal bipn;
+
+    // le le premier bip
+    //BipAccentuer bipaccent;
+
 
     //le texte clignotant
     private TextView affichtemps = null;
@@ -74,6 +81,11 @@ public class Main extends Activity {
     //checkbox bip
     private CheckBox ch_son = null;
 
+    //checkbox accentuer le premier bip
+    //private CheckBox ch_accentPremier = null;
+
+    //private boolean accent = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +105,7 @@ public class Main extends Activity {
 
 
 
-        Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
+        //Log.d("buildWidgets : ", "création et initialisation des widgets de l'application");
 
         temps = (TextView) findViewById(R.id.temps);
         temps.setText("" + vaLtemps);
@@ -111,6 +123,8 @@ public class Main extends Activity {
         vibreur = new Vibreur(this);
 
         bipn =  new BipNormal(this);
+        //bipaccent =  new BipAccentuer(this);
+
 
         //button demarrer/arreter
         start = (ToggleButton) findViewById(R.id.demarrer);
@@ -157,7 +171,8 @@ public class Main extends Activity {
             }
         }));
 
-
+        /*ch_accentPremier = (CheckBox)findViewById(R.id.accent_prem);
+        ch_accentPremier.setEnabled(false);*/
 
         ch_son = (CheckBox)findViewById(R.id.son);
         ch_son.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
@@ -166,12 +181,63 @@ public class Main extends Activity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked && start.isChecked()){
 
+
+
                 }else{
+
 
                 }
 
             }
         }));
+
+       /* ch_son.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked ){
+
+                    ch_accentPremier.setEnabled(true);
+
+                    if(start.isChecked()){
+
+
+                    }
+
+                }else{
+                    ch_accentPremier.setEnabled(false);
+
+                }
+
+            }
+        }));*/
+
+
+
+       /* ch_accentPremier.setOnCheckedChangeListener((new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked && start.isChecked() && ch_son.isChecked()){
+
+
+                if(accent){
+                    bipn.stop();
+                    bipaccent.start(realval,500);
+                }else{
+                    bipaccent.stop();
+                    bipn.start(realval,500);
+                }
+
+                }else{
+
+                }
+
+            }
+        }));*/
+
+
+
 
     }
 
@@ -203,6 +269,7 @@ public class Main extends Activity {
     long j;
     long k;
     long p;
+
     public  void startMetronome(int offset){// le temps qu'il faut attendre avant de lancer
         long i = System.currentTimeMillis();
         clignote.blink(realval, offset);
@@ -349,7 +416,15 @@ public class Main extends Activity {
         return bat;
     }
 
+/*    public void setAccent(boolean accent) {
+        this.accent = accent;
+    }*/
+
     public Compteur getCompteur() {
         return compteur;
     }
+
+  /*  public boolean isAccent() {
+        return accent;
+    }*/
 }

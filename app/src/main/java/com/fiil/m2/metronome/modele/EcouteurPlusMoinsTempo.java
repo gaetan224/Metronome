@@ -145,8 +145,6 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         if(main.getStart().isChecked()){
             main.startMetronome(50);
 
-        }else{
-            main.stopMetronome();
         }
     }
 
@@ -168,8 +166,6 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         if(main.getStart().isChecked()){
            main.startMetronome(50);
 
-        }else{
-            main.stopMetronome();
         }
 
     }

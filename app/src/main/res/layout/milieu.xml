@@ -110,6 +110,8 @@
             android:id="@+id/vibreur"
             />
 
+
+
         <TextView
             android:text="4 temps"
             android:textSize="20dp"
@@ -129,6 +131,11 @@
             android:text="@string/son"
             android:id="@+id/son"
             />
+
+       <!-- <CheckBox
+            android:text="@string/accent_prem"
+            android:id="@+id/accent_prem"
+            /> -->
 
 
     </TableRow>
