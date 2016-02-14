@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Metrenome</string>
+    <string name="vibreur">振动</string>
+    <string name="start">启动</string>
+    <string name="stop">停止</string>
+    <string name="action_settings">设置</string>
+    <string name="accent_prem">强调第一</string>
+    <string name="son">他的 </string>
+    <string name="tempo">拍子</string>
+    <string name="temps">时间测量</string>
+</resources>
