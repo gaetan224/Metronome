@@ -35,7 +35,7 @@ public class BipNormal{
         mediaPlayer = MediaPlayer.create(main, R.raw.son_1023);
 
         myHandler = new Handler();
-        mediaPlayer.setVolume(0.05f, 0.05f);
+        mediaPlayer.setVolume(0.09f, 0.09f);
 
     }
 

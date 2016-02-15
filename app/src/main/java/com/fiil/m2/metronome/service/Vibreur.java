@@ -23,7 +23,7 @@ public class Vibreur {
     public void vibre(int tempAvibrer, long offset){
 
         long temps = tempAvibrer -100;
-        long[] pattern = {offset, temps, 100}; // 1: temps avant de commencer 2: durée d'une vibration, 3: intervale de temps qui sépare les vibration
+        long[] pattern = {offset, 100, temps}; // 1: temps avant de commencer 2: durée d'une vibration, 3: intervale de temps qui sépare les vibration
 
         if(vibreur.hasVibrator())
         vibreur.vibrate(pattern, 0); // repeter a l'infini

@@ -43,7 +43,7 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
     @Override
     public void onClick(View v) {
      //   doAction(v,1);
-
+        main.stopMetronome();
         switch (v.getId()) {
             // si c'est plus
             case R.id.plustempo:
@@ -56,13 +56,18 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
 
         }
 
+        if(main.getStart().isChecked()){
+            main.startMetronome(50);
+
+        }
+
 
     }
 
         // si on click on maintien en incrémente par pas de 5
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-
+            main.stopMetronome();
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN: // si on maintien le bouton plus ou moins
                 if (mHandler != null) return true;
@@ -103,6 +108,10 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
                 break;
         }
 
+        if(main.getStart().isChecked()){
+            main.startMetronome(50);
+
+        }
             // false pour ne pas absorber le click simple
         return false;
     }
@@ -142,10 +151,10 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
 
-        if(main.getStart().isChecked()){
+       /* if(main.getStart().isChecked()){
             main.startMetronome(50);
 
-        }
+        }*/
     }
 
 
@@ -163,10 +172,10 @@ public class EcouteurPlusMoinsTempo implements  View.OnClickListener, View.OnTou
         main.setVaLtempo(vaLtempo);
         main.getTempo().setText(vaLtempo+"");
 
-        if(main.getStart().isChecked()){
+      /*  if(main.getStart().isChecked()){
            main.startMetronome(50);
 
-        }
+        }*/
 
     }
 

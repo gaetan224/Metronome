@@ -181,10 +181,10 @@ public class Main extends Activity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked && start.isChecked()){
 
-
+                    bipn.start(realval,(50 - (p - k)));
 
                 }else{
-
+                    bipn.stop();
 
                 }
 
