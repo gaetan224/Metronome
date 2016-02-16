@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">metrenome</string>
+    <string name="alt_string">Logo metrenome</string>
+    <string name="volume">Volumen</string>
+    <string name="vibreur">Vibrator</string>
+    <string name="start">Start</string>
+    <string name="stop">Stopp</string>
+    <string name="tempo">Tempo</string>
+    <string name="temps">Zeit</string>
+    <string name="son">klingen</string>
+    <string name="accent_prem">Markieren Sie die erste</string>
+</resources>

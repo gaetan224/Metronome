@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الايقاع</string>
+    <string name="alt_string">Logo metrenome</string>
+    <string name="volume">الصوت</string>
+    <string name="vibreur">هزاز</string>
+    <string name="start">بداية</string>
+    <string name="stop">توقف</string>
+    <string name="tempo">الإيقاع</string>
+    <string name="temps">قياس الوقت</string>
+    <string name="son">صوت</string>
+    <string name="accent_prem">تعديل الصوت </string>
+</resources>
