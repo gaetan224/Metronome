@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Metrenome</string>
+    <string name="app_name">节拍器</string>
     <string name="vibreur">振动</string>
     <string name="start">启动</string>
     <string name="stop">停止</string>
