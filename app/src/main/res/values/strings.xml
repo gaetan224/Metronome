@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Metrenome</string>
-
     <string name="vibreur">Vibration</string>
     <string name="start">Démarrer</string>
     <string name="stop">Arreter</string>
